@@ -222,9 +222,10 @@ ${nav("")}
   </section>
 
   <section class="nearyou" id="nearYou" hidden>
-    <h2 class="sec-title">Your 3 nearest temples — and where to stay</h2>
     <p class="nearyou-sub" id="nearYouSub"></p>
-    <div class="near-grid ny" id="nearYouGrid"></div>
+    <div class="ny-cat" id="catTemples" hidden><h2 class="sec-title">⛩️ Temples near you</h2><div class="near-grid ny" id="nyTemples"></div></div>
+    <div class="ny-cat" id="catSpots" hidden><h2 class="sec-title">📸 Famous spots near you</h2><div class="near-grid ny" id="nySpots"></div></div>
+    <div class="ny-cat" id="catParks" hidden><h2 class="sec-title">🌿 National parks near you</h2><div class="near-grid ny" id="nyParks"></div></div>
   </section>
 
   <section class="grid" id="grid">
@@ -260,35 +261,43 @@ ${footer}
   // Auto-locate every visitor by IP (silent, city-level) and surface the
   // nearest temples + Agoda stay links the moment they land.
   (function () {
-    var CID = window.__AGODA_CID__ || "YOUR_AGODA_CID";
+    var CID = window.__AGODA_CID__ || "1967296";
     var T = window.__TEMPLES__ || [];
-    if (!T.length || !window.Geo) return;
-    function agoda(place) {
-      return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place);
+    var P = window.__PLACES__ || {};
+    if (!window.Geo) return;
+    function agoda(place) { return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place); }
+    function card(n) {
+      var t = n.temple, h = t.hotel;
+      var stay = h
+        ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
+          + (h.photo ? '<img src="' + h.photo + '" loading="lazy" alt="">' : '')
+          + '<div class="ny-hotel-info"><strong>Stay: ' + h.name + '</strong><span>'
+          + (h.star ? h.star + '★ ' : '') + (h.score ? h.score + '/10 · ' : '') + 'Book on Agoda →</span></div></a>'
+        : '<a class="ny-hotel none" href="' + agoda("hotels near " + t.name + ", " + (t.town || "")) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay near here →</a>';
+      var read = t.slug
+        ? '<a class="cta-temple" href="temples/' + t.slug + '.html">Read about it →</a>'
+        : '<a class="cta-temple" href="https://www.google.com/maps/search/?api=1&query=' + t.lat + ',' + t.lon + '" target="_blank" rel="noopener">View on map →</a>';
+      return '<article class="ny-card"><div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
+        + '<h3>' + t.name + '</h3><p>' + (t.town || "") + '</p>' + read + '</div>' + stay + '</article>';
+    }
+    function renderNear(arr, gridId, catId, me) {
+      var cat = document.getElementById(catId);
+      if (!arr || !arr.length) { if (cat) cat.hidden = true; return; }
+      var near = Geo.nearest(me, arr, 3);
+      document.getElementById(gridId).innerHTML = near.map(card).join("");
+      if (cat) cat.hidden = false;
     }
     function show(me, label) {
-      var near = Geo.nearest(me, T, 3);
-      document.getElementById("nearYouGrid").innerHTML = near.map(function (n) {
-        var t = n.temple, h = t.hotel;
-        var stay = h
-          ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
-            + (h.photo ? '<img src="' + h.photo + '" loading="lazy" alt="">' : '')
-            + '<div class="ny-hotel-info"><strong>Stay: ' + h.name + '</strong><span>'
-            + (h.star ? h.star + '★ ' : '') + (h.score ? h.score + '/10 · ' : '') + 'Book on Agoda →</span></div></a>'
-          : '<a class="ny-hotel none" href="' + agoda("hotels near " + t.name + ", " + (t.town || t.state)) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay near here →</a>';
-        return '<article class="ny-card">'
-          + '<div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
-          + '<h3>' + t.name + '</h3><p>' + (t.town || t.state) + '</p>'
-          + '<a class="cta-temple" href="temples/' + t.slug + '.html">Read about the temple →</a></div>'
-          + stay + '</article>';
-      }).join("");
+      renderNear(T, "nyTemples", "catTemples", me);
+      renderNear(P.spot, "nySpots", "catSpots", me);
+      renderNear(P.park, "nyParks", "catParks", me);
       document.getElementById("nearYouSub").textContent = label;
       document.getElementById("nearYou").hidden = false;
       document.getElementById("nearYou").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
     fetch("https://get.geojs.io/v1/ip/geo.json").then(function (r) { return r.json(); }).then(function (g) {
       var lat = parseFloat(g.latitude), lon = parseFloat(g.longitude);
-      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, "Closest sacred sites to you" + (g.city ? " — near " + g.city : "") + ".");
+      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, "Top picks near you" + (g.city ? " — " + g.city : "") + ".");
     }).catch(function () {});
   })();
 </script>
@@ -324,9 +333,22 @@ const pub = temples.map((t) => {
   } : null;
   return { slug: t.slug, name: t.name, town: t.town, state: t.state, lat: t.lat, lon: t.lon, category: t.category, hotel };
 });
+
+// general travel places (parks + famous spots) with a nearest hotel each
+let PLACES = [];
+try { PLACES = JSON.parse(readFileSync("data/places.json", "utf8")); } catch { /* optional */ }
+const placePub = PLACES.map((p) => {
+  const h = nearestHotels(p, 1)[0];
+  const hotel = h ? {
+    name: h.name, photo: (h.photo || "").replace(/^http:/, "https:"), star: h.star, score: h.score,
+    url: h.url + (h.url.includes("?") ? "&" : "?") + "cid=" + AGODA_CID,
+  } : null;
+  return { kind: p.kind, name: p.name, town: p.town, lat: p.lat, lon: p.lon, hotel };
+});
+const placesByKind = { spot: placePub.filter((p) => p.kind === "spot"), park: placePub.filter((p) => p.kind === "park") };
 writeFileSync(`${OUT}/temples-data.json`, JSON.stringify(pub));
 // also as JS so the planner works when opened via file:// (fetch is blocked there)
-writeFileSync(`${OUT}/temples-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__TEMPLES__ = ${JSON.stringify(pub)};`);
+writeFileSync(`${OUT}/temples-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__TEMPLES__ = ${JSON.stringify(pub)};\nwindow.__PLACES__ = ${JSON.stringify(placesByKind)};`);
 
 // general "Stays" index: top Indian cities, top hotels each (compact, shippable)
 if (HOTELS.length) {

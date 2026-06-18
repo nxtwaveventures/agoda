@@ -40,9 +40,10 @@
   </section>
 
   <section class="nearyou" id="nearYou" hidden>
-    <h2 class="sec-title">Your 3 nearest temples — and where to stay</h2>
     <p class="nearyou-sub" id="nearYouSub"></p>
-    <div class="near-grid ny" id="nearYouGrid"></div>
+    <div class="ny-cat" id="catTemples" hidden><h2 class="sec-title">⛩️ Temples near you</h2><div class="near-grid ny" id="nyTemples"></div></div>
+    <div class="ny-cat" id="catSpots" hidden><h2 class="sec-title">📸 Famous spots near you</h2><div class="near-grid ny" id="nySpots"></div></div>
+    <div class="ny-cat" id="catParks" hidden><h2 class="sec-title">🌿 National parks near you</h2><div class="near-grid ny" id="nyParks"></div></div>
   </section>
 
   <section class="grid" id="grid">
@@ -15296,35 +15297,43 @@
   // Auto-locate every visitor by IP (silent, city-level) and surface the
   // nearest temples + Agoda stay links the moment they land.
   (function () {
-    var CID = window.__AGODA_CID__ || "YOUR_AGODA_CID";
+    var CID = window.__AGODA_CID__ || "1967296";
     var T = window.__TEMPLES__ || [];
-    if (!T.length || !window.Geo) return;
-    function agoda(place) {
-      return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place);
+    var P = window.__PLACES__ || {};
+    if (!window.Geo) return;
+    function agoda(place) { return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place); }
+    function card(n) {
+      var t = n.temple, h = t.hotel;
+      var stay = h
+        ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
+          + (h.photo ? '<img src="' + h.photo + '" loading="lazy" alt="">' : '')
+          + '<div class="ny-hotel-info"><strong>Stay: ' + h.name + '</strong><span>'
+          + (h.star ? h.star + '★ ' : '') + (h.score ? h.score + '/10 · ' : '') + 'Book on Agoda →</span></div></a>'
+        : '<a class="ny-hotel none" href="' + agoda("hotels near " + t.name + ", " + (t.town || "")) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay near here →</a>';
+      var read = t.slug
+        ? '<a class="cta-temple" href="temples/' + t.slug + '.html">Read about it →</a>'
+        : '<a class="cta-temple" href="https://www.google.com/maps/search/?api=1&query=' + t.lat + ',' + t.lon + '" target="_blank" rel="noopener">View on map →</a>';
+      return '<article class="ny-card"><div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
+        + '<h3>' + t.name + '</h3><p>' + (t.town || "") + '</p>' + read + '</div>' + stay + '</article>';
+    }
+    function renderNear(arr, gridId, catId, me) {
+      var cat = document.getElementById(catId);
+      if (!arr || !arr.length) { if (cat) cat.hidden = true; return; }
+      var near = Geo.nearest(me, arr, 3);
+      document.getElementById(gridId).innerHTML = near.map(card).join("");
+      if (cat) cat.hidden = false;
     }
     function show(me, label) {
-      var near = Geo.nearest(me, T, 3);
-      document.getElementById("nearYouGrid").innerHTML = near.map(function (n) {
-        var t = n.temple, h = t.hotel;
-        var stay = h
-          ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
-            + (h.photo ? '<img src="' + h.photo + '" loading="lazy" alt="">' : '')
-            + '<div class="ny-hotel-info"><strong>Stay: ' + h.name + '</strong><span>'
-            + (h.star ? h.star + '★ ' : '') + (h.score ? h.score + '/10 · ' : '') + 'Book on Agoda →</span></div></a>'
-          : '<a class="ny-hotel none" href="' + agoda("hotels near " + t.name + ", " + (t.town || t.state)) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay near here →</a>';
-        return '<article class="ny-card">'
-          + '<div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
-          + '<h3>' + t.name + '</h3><p>' + (t.town || t.state) + '</p>'
-          + '<a class="cta-temple" href="temples/' + t.slug + '.html">Read about the temple →</a></div>'
-          + stay + '</article>';
-      }).join("");
+      renderNear(T, "nyTemples", "catTemples", me);
+      renderNear(P.spot, "nySpots", "catSpots", me);
+      renderNear(P.park, "nyParks", "catParks", me);
       document.getElementById("nearYouSub").textContent = label;
       document.getElementById("nearYou").hidden = false;
       document.getElementById("nearYou").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
     fetch("https://get.geojs.io/v1/ip/geo.json").then(function (r) { return r.json(); }).then(function (g) {
       var lat = parseFloat(g.latitude), lon = parseFloat(g.longitude);
-      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, "Closest sacred sites to you" + (g.city ? " — near " + g.city : "") + ".");
+      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, "Top picks near you" + (g.city ? " — " + g.city : "") + ".");
     }).catch(function () {});
   })();
 </script>

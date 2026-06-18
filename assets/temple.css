@@ -416,3 +416,7 @@ body::after {
 .ny-hotel-info strong { display: block; font-size: .9rem; line-height: 1.25; }
 .ny-hotel-info span { color: var(--magenta); font-size: .8rem; font-weight: 600; }
 .ny-hotel.none { justify-content: center; font-weight: 700; color: var(--magenta); }
+
+/* travel category sections on the homepage */
+.ny-cat { margin-bottom: 2.2rem; }
+.ny-cat .sec-title { text-align: left; margin: 0 0 1rem; font-size: clamp(1.4rem, 4vw, 1.9rem); }
