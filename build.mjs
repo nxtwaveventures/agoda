@@ -96,7 +96,7 @@ ${extraHead}
 
 const nav = (root = "") => `<header class="topbar">
   <a class="brand" href="${root}index.html"><span class="om">ॐ</span> ${BRAND}</a>
-  <nav><a href="${root}index.html">All Temples</a> <a href="${root}yatra.html">Near Me</a> <a class="navcta" href="${root}journey.html">Plan a Journey</a></nav>
+  <nav><a href="${root}stays.html">Stays</a> <a href="${root}index.html">Temples</a> <a href="${root}journey.html">Journeys</a> <a class="navcta" href="${root}yatra.html">Near Me</a></nav>
 </header>`;
 
 const footer = `<footer class="sitefoot">
@@ -302,5 +302,22 @@ const pub = temples.map((t) => ({ slug: t.slug, name: t.name, town: t.town, stat
 writeFileSync(`${OUT}/temples-data.json`, JSON.stringify(pub));
 // also as JS so the planner works when opened via file:// (fetch is blocked there)
 writeFileSync(`${OUT}/temples-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__TEMPLES__ = ${JSON.stringify(pub)};`);
+
+// general "Stays" index: top Indian cities, top hotels each (compact, shippable)
+if (HOTELS.length) {
+  const byCity = new Map();
+  for (const h of HOTELS) { if (!h.city) continue; let a = byCity.get(h.city); if (!a) { a = []; byCity.set(h.city, a); } a.push(h); }
+  const stays = [...byCity.entries()]
+    .sort((a, b) => b[1].length - a[1].length).slice(0, 60)
+    .map(([city, arr]) => ({
+      city,
+      hotels: arr.sort((a, b) => b.reviews - a.reviews).slice(0, 12).map((h) => ({
+        id: h.id, name: h.name, star: h.star, score: h.score, reviews: h.reviews,
+        photo: (h.photo || "").replace(/^http:/, "https:"),
+        url: h.url + (h.url.includes("?") ? "&" : "?") + "cid=" + AGODA_CID,
+      })),
+    }));
+  writeFileSync(`${OUT}/stays-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__STAYS__=${JSON.stringify(stays)};`);
+}
 
 console.log(`✓ Built ${temples.length} temple pages + index + sitemap + data feed (brand: ${BRAND})`);

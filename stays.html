@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Find a stay anywhere in India — with a price-drop alert | Etoffe</title>
+<meta name="description" content="Search hotels in any Indian city, see real photos, ratings and prices, book on Agoda, and get an email the moment the price drops." />
+<link rel="canonical" href="https://etoffe.co.in/stays.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%8E%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/temple.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="om">ॐ</span> Etoffe</a>
+  <nav><a href="stays.html">Stays</a> <a href="index.html">Temples</a> <a href="journey.html">Journeys</a> <a class="navcta" href="yatra.html">Near Me</a></nav>
+</header>
+
+<main class="home stays">
+  <section class="hero">
+    <p class="eyebrow"><i>🛎️</i> stays</p>
+    <h1>book smart.<br />we'll watch the price.</h1>
+    <p class="lead">Find a hotel in any Indian city - real ratings, real photos - and get an <em>email the moment the price drops.</em></p>
+    <div class="searchwrap">
+      <select id="cityPick" aria-label="Choose a city"><option value="">Choose a city…</option></select>
+    </div>
+    <p class="stat" id="stat"></p>
+  </section>
+
+  <section id="out"><div class="hotel-cards" id="cards"></div></section>
+</main>
+
+<footer class="sitefoot">
+  <p><strong>Etoffe</strong> — book smart, we'll watch the price.</p>
+  <p class="disc">Hotel links are affiliate links - we may earn a commission at no extra cost to you. Ratings/photos from Agoda. Price-drop alerts are sent by email; we only use your address for the alert you asked for.</p>
+</footer>
+
+<script src="stays-data.js"></script>
+<script src="assets/alert.js"></script>
+<script>
+  const STAYS = window.__STAYS__ || [];
+  const sel = document.getElementById("cityPick");
+  STAYS.map((s) => s.city).sort().forEach((c) => sel.add(new Option(c, c)));
+
+  function render(city) {
+    const entry = STAYS.find((s) => s.city === city);
+    const cards = document.getElementById("cards");
+    if (!entry) { cards.innerHTML = ""; return; }
+    document.getElementById("stat").textContent = entry.hotels.length + " top-reviewed stays in " + city;
+    cards.innerHTML = entry.hotels.map((h) => {
+      const meta = [h.star ? h.star + "★" : "", h.score ? h.score + "/10" : "", h.reviews ? h.reviews.toLocaleString() + " reviews" : ""].filter(Boolean).join(" · ");
+      return `<article class="hotel">
+        <a class="hotel-photo" href="${h.url}" target="_blank" rel="sponsored noopener">${h.photo ? `<img src="${h.photo}" loading="lazy" alt="${h.name.replace(/"/g, "&quot;")}">` : ""}</a>
+        <div class="hotel-info">
+          <h3>${h.name}</h3>
+          <p class="hotel-meta">${meta}</p>
+          <div class="hotel-actions">
+            <a class="book-btn" href="${h.url}" target="_blank" rel="sponsored noopener">Book on Agoda →</a>
+            <button class="alert-btn" data-hid="${h.id}" data-name="${h.name.replace(/"/g, "&quot;")}">🔔 Price-drop alert</button>
+          </div>
+        </div>
+      </article>`;
+    }).join("");
+    document.getElementById("out").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+  sel.addEventListener("change", () => sel.value && render(sel.value));
+</script>
+</body>
+</html>
