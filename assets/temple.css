@@ -400,3 +400,6 @@ body::after {
 .alert-btn:hover { background: rgba(255,138,30,.22); }
 .alert-btn:disabled { opacity: .8; cursor: default; }
 @media (max-width: 480px) { .hotel { flex-direction: column; } .hotel-photo, .hotel-photo img { width: 100%; } }
+
+/* logo: Om only */
+.brand .om { font-size: 1.7rem; line-height: 1; }

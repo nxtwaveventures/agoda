@@ -95,7 +95,7 @@ ${extraHead}
 </head>`;
 
 const nav = (root = "") => `<header class="topbar">
-  <a class="brand" href="${root}index.html"><span class="om">ॐ</span> ${BRAND}</a>
+  <a class="brand" href="${root}index.html" aria-label="${BRAND}"><span class="om">ॐ</span></a>
   <nav><a href="${root}stays.html">Stays</a> <a href="${root}index.html">Temples</a> <a href="${root}journey.html">Journeys</a> <a class="navcta" href="${root}yatra.html">Near Me</a></nav>
 </header>`;
 
@@ -209,7 +209,14 @@ ${nav("")}
     <h1>every temple,<br />one place.</h1>
     <p class="lead">Exploration is the key to human nature — <em>explore the world through god's eye.</em></p>
     <div class="searchwrap">
-      <input id="q" type="search" placeholder="Search a temple, town or state…" aria-label="Search temples" />
+      <input id="q" type="search" placeholder='Try "Kashi Vishwanath", "Tamil Nadu", or "Jyotirlinga"…' aria-label="Search temples" />
+    </div>
+    <div class="examples" id="exs">
+      <button class="chip" type="button">Jyotirlinga</button>
+      <button class="chip" type="button">Varanasi</button>
+      <button class="chip" type="button">Tamil Nadu</button>
+      <button class="chip" type="button">Shiva</button>
+      <button class="chip" type="button">Odisha</button>
     </div>
     <p class="stat"><strong id="count">${temples.length}</strong> temples and counting · ${states.length} states</p>
   </section>
@@ -243,6 +250,10 @@ ${footer}
     }
     count.textContent = shown;
     noresult.hidden = shown !== 0;
+  });
+  var exs = document.getElementById('exs');
+  if (exs) exs.addEventListener('click', function (e) {
+    if (e.target.classList.contains('chip')) { q.value = e.target.textContent; q.dispatchEvent(new Event('input')); }
   });
 </script>
 <script>
