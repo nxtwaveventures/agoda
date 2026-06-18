@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Plan your Yatra — just describe your trip | Temple Yatra</title>
+<meta name="description" content="Type your trip in plain words — like 'temple visit 2 days near me' — and get a ready pilgrimage plan with the best route and places to stay." />
+<link rel="canonical" href="https://etoffe.co.in/yatra.html" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%95%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/temple.css" />
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="om">ॐ</span> Temple Yatra</a>
+  <nav><a href="index.html">All Temples</a> <a class="navcta" href="yatra.html">Plan a Yatra</a></nav>
+</header>
+
+<main class="home yatra">
+  <section class="hero">
+    <p class="eyebrow"><i>ॐ</i> plan your yatra</p>
+    <h1>just say where<br />you want to go.</h1>
+    <p class="lead">Type it like you'd say it — <em>"temple visit 2 days near me"</em></p>
+
+    <form class="bigsearch" id="ysForm">
+      <input id="yq" type="search" autocomplete="off"
+        placeholder="temple visit 2 days near me" aria-label="Describe your trip" />
+      <button type="submit">Plan it ✦</button>
+    </form>
+
+    <div class="examples" id="examples"></div>
+    <p class="locstatus" id="locStatus"></p>
+  </section>
+
+  <section id="plan" hidden>
+    <h2 class="sec-title" id="planTitle"></h2>
+    <div id="days"></div>
+  </section>
+</main>
+
+<footer class="sitefoot">
+  <p><strong>Temple Yatra</strong> — a free, sourced encyclopedia of India's temples.</p>
+  <p class="disc">Distances are straight-line estimates for planning; real travel will be longer. Hotel links are affiliate links — we may earn a commission at no extra cost to you. Confirm temple timings and access before you travel.</p>
+</footer>
+
+<script src="temples-data.js"></script>
+<script src="assets/geo.js"></script>
+<script>
+  // Agoda Partner CID — set once in build.mjs (AGODA_CID), injected via temples-data.js
+  const AGODA_CID = window.__AGODA_CID__ || "YOUR_AGODA_CID";
+  const agodaLink = (place) =>
+    "https://www.agoda.com/search?cid=" + encodeURIComponent(AGODA_CID) +
+    "&textToSearch=" + encodeURIComponent(place);
+
+  const CITIES = {
+    "Delhi":[28.61,77.21],"Mumbai":[19.08,72.88],"Bengaluru":[12.97,77.59],"Chennai":[13.08,80.27],
+    "Kolkata":[22.57,88.36],"Hyderabad":[17.39,78.49],"Pune":[18.52,73.86],"Ahmedabad":[23.03,72.58],
+    "Jaipur":[26.91,75.79],"Varanasi":[25.31,83.01],"Lucknow":[26.85,80.95],"Bhopal":[23.26,77.41],
+    "Nagpur":[21.15,79.09],"Patna":[25.59,85.14],"Bhubaneswar":[20.27,85.84],"Surat":[21.17,72.83],
+    "Indore":[22.72,75.86],"Chandigarh":[30.73,76.78],"Rishikesh":[30.09,78.27],"Haridwar":[29.95,78.16],
+    "Amritsar":[31.63,74.87],"Shirdi":[19.77,74.48],"Nashik":[19.99,73.79],"Ujjain":[23.18,75.78],
+    "Tirupati":[13.63,79.42],"Madurai":[9.93,78.12],"Dwarka":[22.24,68.97],"Puri":[19.81,85.83],
+    "Ayodhya":[26.79,82.20],"Mathura":[27.49,77.67],"Katra":[32.99,74.95],"Gaya":[24.80,85.00],
+    "Manali":[32.24,77.19],"Shimla":[31.10,77.17],"Kochi":[9.93,76.27],"Guwahati":[26.14,91.74]
+  };
+  const EXAMPLES = [
+    "temple visit 2 days near me",
+    "Shiva temples near Mumbai",
+    "temples on the way Delhi to Varanasi",
+    "3 day jyotirlinga yatra near Pune",
+    "temples between Pune and Nashik"
+  ];
+
+  const $ = (s) => document.querySelector(s);
+  // data is injected by temples-data.js (<script>, works under file://). Fall
+  // back to fetch when served over http and the global is somehow missing.
+  let TEMPLES = window.__TEMPLES__ || [];
+  if (!TEMPLES.length) {
+    fetch("./temples-data.json").then((r) => r.json()).then((d) => { TEMPLES = d; }).catch(() => {});
+  }
+
+  // example chips
+  $("#examples").innerHTML = EXAMPLES.map((e) => `<button class="chip" type="button">${e}</button>`).join("");
+  $("#examples").addEventListener("click", (e) => {
+    if (e.target.classList.contains("chip")) { $("#yq").value = e.target.textContent; run(); }
+  });
+
+  // ---- natural-language parse (lightweight, client-side) ----
+  function parse(q) {
+    q = " " + q.toLowerCase() + " ";
+
+    // find named cities by their position in the text
+    const found = [];
+    for (const c of Object.keys(CITIES)) {
+      const idx = q.indexOf(" " + c.toLowerCase());
+      if (idx >= 0) found.push({ city: c, idx });
+    }
+    found.sort((a, b) => a.idx - b.idx);
+
+    // corridor mode: two cities + an "on the way / to / between" hint
+    const corridorHint = /\bto\b|->|→|on the way|en ?route|between|route from/.test(q);
+    if (found.length >= 2 && corridorHint) {
+      return { mode: "corridor", from: found[0].city, to: found[1].city };
+    }
+
+    let days = 1;
+    const dm = q.match(/(\d+)\s*-?\s*day/);
+    if (dm) days = Math.min(7, Math.max(1, +dm[1]));
+    else if (/weekend/.test(q)) days = 2;
+
+    const nearMe = /near me|nearby|around me|my location|close by/.test(q);
+    const cityKey = found.length ? found[0].city : null;
+
+    let filter = null, deityLabel = "";
+    if (/shiv|jyotirling|mahadev|shankar|nath/.test(q)) {
+      filter = (t) => /shiv|jyotirling/i.test(t.deity + " " + t.category + " " + t.name); deityLabel = "Shiva";
+    } else if (/vishnu|narayan|venkat|jagannath|\bram\b|rama|krishna|balaji/.test(q)) {
+      filter = (t) => /vishnu|narayan|jagannath|ram|krishna|venkat|balaji/i.test(t.deity + " " + t.name); deityLabel = "Vishnu";
+    } else if (/devi|shakti|amba|durga|kali|\bmata\b|\bmaa\b|bhavani/.test(q)) {
+      filter = (t) => /devi|shakti|durga|kali|amba|bhavani|mata/i.test(t.deity + " " + t.name); deityLabel = "Devi";
+    }
+    return { mode: "plan", days, nearMe, cityKey, filter, deityLabel };
+  }
+
+  function buildPlan(me, label, p) {
+    let cands = p.filter ? TEMPLES.filter(p.filter) : TEMPLES;
+    if (cands.length < p.days * 2) cands = TEMPLES; // relax if filter too tight
+    const perDay = 3;
+    const near = Geo.nearest(me, cands, p.days * perDay);
+    if (!near.length) { $("#locStatus").textContent = "No temples found — try another place."; return; }
+
+    // travel-sensible order across the picked temples
+    let subset = near.map((n) => n.temple);
+    if (subset.length >= 2) {
+      const r = Geo.optimalRoute(subset, 0);
+      subset = r.order.map((i) => subset[i]);
+    }
+
+    const title = `Your ${p.days}-day ${p.deityLabel ? p.deityLabel + " " : ""}temple plan near ${label}`;
+    $("#planTitle").textContent = title;
+
+    let html = "";
+    for (let d = 0; d < p.days; d++) {
+      const dayT = subset.slice(d * perDay, (d + 1) * perDay);
+      if (!dayT.length) break;
+      const base = dayT[dayT.length - 1];
+      html += `<article class="day-card">
+        <div class="day-head"><span class="day-n">Day ${d + 1}</span></div>
+        <ul class="day-temples">` +
+        dayT.map((t) => {
+          const km = Math.round(Geo.haversine(me, t));
+          return `<li>
+            <div><strong>${t.name}</strong><span class="t-sub">${t.town || t.state} · ${km} km from ${label}</span></div>
+            <a class="cta-temple" href="temples/${t.slug}.html">Read →</a>
+          </li>`;
+        }).join("") +
+        `</ul>
+        <a class="cta-hotel" href="${agodaLink("hotels near " + base.name + ", " + (base.town || base.state))}" target="_blank" rel="sponsored noopener">🏨 Where to stay on Day ${d + 1}</a>
+      </article>`;
+    }
+    $("#days").innerHTML = html;
+    $("#plan").hidden = false;
+    $("#locStatus").textContent = "";
+    $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  // "Temples on the way" — corridor between two cities
+  function renderCorridor(p) {
+    const A = CITIES[p.from], B = CITIES[p.to];
+    const a = { lat: A[0], lon: A[1] }, b = { lat: B[0], lon: B[1] };
+    const list = Geo.corridor(a, b, TEMPLES, 70);
+    $("#planTitle").textContent = `Temples on the way: ${p.from} → ${p.to}`;
+    $("#plan").hidden = false;
+    $("#locStatus").textContent = "";
+    if (!list.length) {
+      $("#days").innerHTML = `<p class="route-note">No temples are in our data right along this route yet — more states are being added.</p>`;
+      $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
+      return;
+    }
+    $("#days").innerHTML =
+      `<p class="route-note">${list.length} temples within ~70 km of your route, in travel order.</p>` +
+      `<ol class="route">` + list.map((c, i) => {
+        const t = c.temple, place = t.name + ", " + (t.town || t.state);
+        return `<li>
+          <div class="route-main"><span class="step">${i + 1}</span>
+            <div><strong>${t.name}</strong><span class="route-sub">${t.town || t.state} · ${Math.round(c.offsetKm)} km off route</span></div>
+          </div>
+          <span class="route-actions">
+            <a class="cta-temple" href="temples/${t.slug}.html">Read →</a>
+            <a class="cta-hotel sm" href="${agodaLink("hotels near " + place)}" target="_blank" rel="sponsored noopener">🏨 Stay</a>
+          </span>
+        </li>`;
+      }).join("") + `</ol>`;
+    $("#plan").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function run() {
+    const q = $("#yq").value.trim();
+    if (!q) return;
+    if (!TEMPLES.length) { $("#locStatus").textContent = "Loading temples…"; setTimeout(run, 400); return; }
+    const p = parse(q);
+
+    if (p.mode === "corridor") { renderCorridor(p); return; }
+
+    if (p.cityKey) { buildPlan({ lat: CITIES[p.cityKey][0], lon: CITIES[p.cityKey][1] }, p.cityKey, p); return; }
+
+    // no city named → use location
+    if (!navigator.geolocation) { $("#locStatus").textContent = "Tell me a city (e.g. 'near Mumbai') — location isn't available here."; return; }
+    $("#locStatus").textContent = "📍 Finding temples near you…";
+    navigator.geolocation.getCurrentPosition(
+      (pos) => buildPlan({ lat: pos.coords.latitude, lon: pos.coords.longitude }, "you", p),
+      () => { $("#locStatus").textContent = "Couldn't get your location — add a city, like 'near Mumbai'."; }
+    );
+  }
+
+  $("#ysForm").addEventListener("submit", (e) => { e.preventDefault(); run(); });
+</script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+# build artifact bundle
+deploy.zip
+
+# deps (project is dependency-free, but just in case)
+node_modules/
+
+# os / editor
+.DS_Store
+*.log
+
+# local agent settings
+.claude/

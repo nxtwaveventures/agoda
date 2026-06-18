@@ -1,0 +1,333 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Temple Yatra — every temple, one place · A Sourced Encyclopedia</title>
+<meta name="description" content="A free, sourced encyclopedia of India's temples — history, architecture, timings, festivals and how to reach, from the great Jyotirlingas to the smallest local shrines." />
+<link rel="canonical" href="https://etoffe.co.in/" />
+<meta property="og:title" content="Temple Yatra — every temple, one place · A Sourced Encyclopedia" />
+<meta property="og:description" content="A free, sourced encyclopedia of India's temples — history, architecture, timings, festivals and how to reach, from the great Jyotirlingas to the smallest local shrines." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%95%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="assets/temple.css" />
+
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="index.html"><span class="om">ॐ</span> Temple Yatra</a>
+  <nav><a href="index.html">All Temples</a> <a class="navcta" href="yatra.html">Plan a Yatra</a></nav>
+</header>
+<main class="home">
+  <section class="hero">
+    <p class="eyebrow"><i>ॐ</i> temple yatra</p>
+    <h1>every temple,<br />one place.</h1>
+    <p class="lead">Exploration is the key to human nature — <em>explore the world through god's eye.</em></p>
+    <div class="searchwrap">
+      <input id="q" type="search" placeholder="Search a temple, town or state…" aria-label="Search temples" />
+    </div>
+    <p class="stat"><strong id="count">39</strong> temples and counting · 9 states</p>
+  </section>
+
+  <section class="nearyou" id="nearYou" hidden>
+    <h2 class="sec-title">Temples near you</h2>
+    <p class="nearyou-sub" id="nearYouSub"></p>
+    <div class="near-grid" id="nearYouGrid"></div>
+  </section>
+
+  <section class="grid" id="grid">
+    <a class="card" href="temples/somnath.html" data-search="somnath temple prabhas patan, veraval gujarat jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Gujarat</span>
+      <h3>Somnath Temple</h3>
+      <p>Prabhas Patan, Veraval</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/mallikarjuna.html" data-search="mallikarjuna swamy temple srisailam andhra pradesh jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Andhra Pradesh</span>
+      <h3>Mallikarjuna Swamy Temple</h3>
+      <p>Srisailam</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/mahakaleshwar.html" data-search="mahakaleshwar temple ujjain madhya pradesh jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Madhya Pradesh</span>
+      <h3>Mahakaleshwar Temple</h3>
+      <p>Ujjain</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/omkareshwar.html" data-search="omkareshwar temple mandhata, khandwa district madhya pradesh jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Madhya Pradesh</span>
+      <h3>Omkareshwar Temple</h3>
+      <p>Mandhata, Khandwa district</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/kedarnath.html" data-search="kedarnath temple kedarnath, rudraprayag district uttarakhand jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Uttarakhand</span>
+      <h3>Kedarnath Temple</h3>
+      <p>Kedarnath, Rudraprayag district</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/bhimashankar.html" data-search="bhimashankar temple bhorgiri, pune district maharashtra jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Maharashtra</span>
+      <h3>Bhimashankar Temple</h3>
+      <p>Bhorgiri, Pune district</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/kashi-vishwanath.html" data-search="kashi vishwanath temple varanasi uttar pradesh jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Uttar Pradesh</span>
+      <h3>Kashi Vishwanath Temple</h3>
+      <p>Varanasi</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/trimbakeshwar.html" data-search="trimbakeshwar temple trimbak, nashik district maharashtra jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Maharashtra</span>
+      <h3>Trimbakeshwar Temple</h3>
+      <p>Trimbak, Nashik district</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/baidyanath.html" data-search="baidyanath temple (vaidyanath dham) deoghar jharkhand jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Jharkhand</span>
+      <h3>Baidyanath Temple (Vaidyanath Dham)</h3>
+      <p>Deoghar</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/nageshwar.html" data-search="nageshwar temple near dwarka gujarat jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Gujarat</span>
+      <h3>Nageshwar Temple</h3>
+      <p>Near Dwarka</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/ramanathaswamy.html" data-search="ramanathaswamy temple rameswaram tamil nadu jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Tamil Nadu</span>
+      <h3>Ramanathaswamy Temple</h3>
+      <p>Rameswaram</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/grishneshwar.html" data-search="grishneshwar temple verul, near ellora, aurangabad (chhatrapati sambhajinagar) maharashtra jyotirlinga shiva (jyotirlinga)">
+      <span class="card-eyebrow">Jyotirlinga · Maharashtra</span>
+      <h3>Grishneshwar Temple</h3>
+      <p>Verul, near Ellora, Aurangabad (Chhatrapati Sambhajinagar)</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/dhabaleswar.html" data-search="dhabaleswar odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Dhabaleswar</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/manikeshwari-temple.html" data-search="manikeshwari temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Manikeshwari Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/sarala-temple.html" data-search="sarala temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Sarala Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/sekhareswar-temple.html" data-search="sekhareswar temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Sekhareswar Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/samaleswari-temple.html" data-search="samaleswari temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Samaleswari Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/kalijai.html" data-search="kalijai odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Kalijai</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/narayani-temple.html" data-search="narayani temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Narayani Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/ashtashambhu-temple.html" data-search="ashtashambhu temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Ashtashambhu Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/gorakhnath-temple.html" data-search="gorakhnath temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Gorakhnath Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/champanath.html" data-search="champanath odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Champanath</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/jagannath-temple-banarpal.html" data-search="jagannath temple, banarpal odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Jagannath Temple, Banarpal</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/trilochaneswar-temple.html" data-search="trilochaneswar temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Trilochaneswar Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/dhamerei-temple.html" data-search="dhamerei temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Dhamerei Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/neelkantheswar-temple.html" data-search="neelkantheswar temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Neelkantheswar Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/paradeswar-temple.html" data-search="paradeswar temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Paradeswar Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/balaram-temple-dhenkanal.html" data-search="balaram temple, dhenkanal odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Balaram Temple, Dhenkanal</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/bali-bhuasuni-peeth.html" data-search="bali bhuasuni peeth odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Bali Bhuasuni Peeth</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/binikei-temple.html" data-search="binikei temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Binikei Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/budhi-thakurani-temple.html" data-search="budhi thakurani temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Budhi Thakurani Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/mahuri-kalua.html" data-search="mahuri kalua odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Mahuri Kalua</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/megheswara-temple.html" data-search="megheswara temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Megheswara Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/ram-temple-junia.html" data-search="ram temple, junia odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Ram Temple, Junia</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/langleswar-temple.html" data-search="langleswar temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Langleswar Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/maa-lobhi-thakurani-temple.html" data-search="maa lobhi thakurani temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Maa Lobhi Thakurani Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/shri-ram-temple-dumuriput.html" data-search="shri ram temple, dumuriput odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Shri Ram Temple, Dumuriput</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/siddheshwar-temple-cuttack.html" data-search="siddheshwar temple, cuttack odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Siddheshwar Temple, Cuttack</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+<a class="card" href="temples/siruli-mahavir-temple.html" data-search="siruli mahavir temple odisha odisha hindu temple hindu deity">
+      <span class="card-eyebrow">Hindu Temple · Odisha</span>
+      <h3>Siruli Mahavir Temple</h3>
+      <p>Odisha</p>
+      <span class="card-go">Read →</span>
+    </a>
+  </section>
+  <p class="noresult" id="noresult" hidden>No temples match that search yet — more are being added.</p>
+</main>
+<footer class="sitefoot">
+  <p><strong>Temple Yatra</strong> — a free, sourced encyclopedia of India's temples.</p>
+  <p class="disc">Facts are compiled from public sources (cited on each page). Timings, darshan rules and access change often — always confirm with the temple before you travel. Legends are noted as tradition, not historical fact.</p>
+</footer>
+<script src="temples-data.js"></script>
+<script src="assets/geo.js"></script>
+<script>
+  const q = document.getElementById('q');
+  const cards = [...document.querySelectorAll('.card')];
+  const count = document.getElementById('count');
+  const noresult = document.getElementById('noresult');
+  q.addEventListener('input', () => {
+    const v = q.value.trim().toLowerCase();
+    let shown = 0;
+    for (const c of cards) {
+      const hit = !v || c.dataset.search.includes(v);
+      c.style.display = hit ? '' : 'none';
+      if (hit) shown++;
+    }
+    count.textContent = shown;
+    noresult.hidden = shown !== 0;
+  });
+</script>
+<script>
+  // Auto-locate every visitor by IP (silent, city-level) and surface the
+  // nearest temples + Agoda stay links the moment they land.
+  (function () {
+    var CID = window.__AGODA_CID__ || "YOUR_AGODA_CID";
+    var T = window.__TEMPLES__ || [];
+    if (!T.length || !window.Geo) return;
+    function agoda(place) {
+      return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place);
+    }
+    function show(me, label) {
+      var near = Geo.nearest(me, T, 6);
+      document.getElementById("nearYouGrid").innerHTML = near.map(function (n) {
+        var t = n.temple, place = t.name + ", " + (t.town || t.state);
+        return '<article class="near-card">'
+          + '<div class="near-top"><span class="km">' + Math.round(n.km) + ' km</span><span class="dir">' + n.dir + '</span></div>'
+          + '<h3>' + t.name + '</h3><p>' + (t.town || t.state) + '</p>'
+          + '<div class="near-cta"><a class="cta-hotel" href="' + agoda("hotels near " + place) + '" target="_blank" rel="sponsored noopener">🏨 Stay near here</a>'
+          + '<a class="cta-temple" href="temples/' + t.slug + '.html">Read →</a></div>'
+          + '</article>';
+      }).join("");
+      document.getElementById("nearYouSub").textContent = label;
+      document.getElementById("nearYou").hidden = false;
+      document.getElementById("nearYou").scrollIntoView({ behavior: "smooth", block: "nearest" });
+    }
+    fetch("https://get.geojs.io/v1/ip/geo.json").then(function (r) { return r.json(); }).then(function (g) {
+      var lat = parseFloat(g.latitude), lon = parseFloat(g.longitude);
+      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, "Closest sacred sites to you" + (g.city ? " — near " + g.city : "") + ".");
+    }).catch(function () {});
+  })();
+</script>
+</body></html>

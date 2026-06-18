@@ -1,0 +1,851 @@
+[
+  {
+    "slug": "somnath",
+    "name": "Somnath Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Prabhas Patan, Veraval",
+    "state": "Gujarat",
+    "lat": 20.888,
+    "lon": 70.401,
+    "significance": "Revered as the first among the twelve Jyotirlingas of Shiva.",
+    "history": "Somnath has been destroyed and rebuilt many times across its long history. The present temple was reconstructed in 1951 in the Maru-Gurjara (Chalukya) style, an effort spearheaded by Sardar Vallabhbhai Patel, and was dedicated by then-President Rajendra Prasad.",
+    "architecture": "Maru-Gurjara (Chalukya) style in sandstone, with an intricately carved shikhara rising above the sanctum on the Arabian Sea shore.",
+    "legend": "Tradition holds that the moon god Soma built the original shrine in gold to be cured of a curse, giving the site its name 'Somnath' (Lord of the Moon).",
+    "festivals": [
+      "Maha Shivaratri",
+      "Kartik Purnima"
+    ],
+    "timings": "Generally open early morning to night, with aarti three times daily. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Veraval (~7 km). Nearest airports: Diu and Rajkot.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Somnath_temple"
+    ]
+  },
+  {
+    "slug": "mallikarjuna",
+    "name": "Mallikarjuna Swamy Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Srisailam",
+    "state": "Andhra Pradesh",
+    "lat": 16.073,
+    "lon": 78.868,
+    "significance": "A rare site that is both a Jyotirlinga (Mallikarjuna) and a Shakti Peetha (Bhramaramba Devi).",
+    "history": "Set in the Nallamala hills on the banks of the Krishna river, the temple complex carries inscriptions and additions from successive dynasties including the Reddy and Vijayanagara rulers.",
+    "architecture": "A large fortified complex with carved stone gopurams and mandapas in the Dravidian tradition.",
+    "legend": "Associated with the legend of Shiva and Parvati following their son Kartikeya to the Srisailam hill.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Ugadi",
+      "Dussehra"
+    ],
+    "timings": "Generally open from early morning to night with multiple sevas. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway stations: Markapur and Nandyal. Nearest airport: Hyderabad.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Mallikarjuna_Jyotirlinga"
+    ]
+  },
+  {
+    "slug": "mahakaleshwar",
+    "name": "Mahakaleshwar Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Ujjain",
+    "state": "Madhya Pradesh",
+    "lat": 23.182,
+    "lon": 75.768,
+    "significance": "Famous for its swayambhu (self-manifested) lingam and the pre-dawn Bhasma Aarti.",
+    "history": "Located beside the Rudra Sagar lake in the ancient city of Ujjain, the temple is mentioned in numerous Puranic and classical texts; the present structure dates largely to the Maratha period.",
+    "architecture": "Bhumija and Maratha architectural influences, with the sanctum set below ground level.",
+    "legend": "The lingam is revered as Dakshinamurti, uniquely facing south, a feature considered especially auspicious here.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Nag Panchami",
+      "Kumbh Mela (Simhastha)"
+    ],
+    "timings": "Opens very early for the Bhasma Aarti (pre-dawn) and remains open through the day. Bhasma Aarti requires advance booking; confirm with the temple.",
+    "howToReach": "Nearest railway station: Ujjain Junction. Nearest airport: Indore (~55 km).",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Mahakaleshwar_Jyotirlinga"
+    ]
+  },
+  {
+    "slug": "omkareshwar",
+    "name": "Omkareshwar Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Mandhata, Khandwa district",
+    "state": "Madhya Pradesh",
+    "lat": 22.245,
+    "lon": 76.151,
+    "significance": "Set on the sacred island of Mandhata in the Narmada river, said to be shaped like the symbol 'Om'.",
+    "history": "A historic pilgrimage centre on the Narmada, the site has temples and ghats developed over many centuries.",
+    "architecture": "North Indian Nagara style stone temple with a tall shikhara, reached across the Narmada.",
+    "legend": "Tradition links the island's Om-like shape to the sanctity of the site.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Kartik Purnima",
+      "Narmada Jayanti"
+    ],
+    "timings": "Generally open from early morning to night with regular aartis. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Omkareshwar Road / Indore. Nearest airport: Indore (~77 km).",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Omkareshwar"
+    ]
+  },
+  {
+    "slug": "kedarnath",
+    "name": "Kedarnath Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Kedarnath, Rudraprayag district",
+    "state": "Uttarakhand",
+    "lat": 30.735,
+    "lon": 79.067,
+    "significance": "The highest of the twelve Jyotirlingas (~3,583 m) and part of both the Char Dham and Panch Kedar circuits.",
+    "history": "An ancient stone temple in the Garhwal Himalayas near the Mandakini river, traditionally associated with the Pandavas and revived by Adi Shankaracharya.",
+    "architecture": "Massive grey-stone masonry built to withstand Himalayan conditions, without mortar in its core structure.",
+    "legend": "Linked to the legend of the Pandavas seeking Shiva, who took the form of a bull and dived into the ground, leaving his hump at Kedarnath.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Opening (Akshaya Tritiya) and closing (Bhai Dooj) ceremonies"
+    ],
+    "timings": "Open only for roughly six months a year (around late April/May to November); closed in winter. Confirm the yatra dates each season.",
+    "howToReach": "Nearest railway station: Rishikesh. Nearest airport: Dehradun. The final ~16-18 km from Gaurikund is on foot, by pony, palki, or helicopter.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Kedarnath_Temple"
+    ]
+  },
+  {
+    "slug": "bhimashankar",
+    "name": "Bhimashankar Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Bhorgiri, Pune district",
+    "state": "Maharashtra",
+    "lat": 19.072,
+    "lon": 73.536,
+    "significance": "A Jyotirlinga in the Sahyadri (Western Ghats) and the source of the Bhima river.",
+    "history": "The temple combines older shrine elements with Nagara additions from the 18th century; the surrounding hills are now a wildlife sanctuary.",
+    "architecture": "Nagara-style stone temple set amid dense Western Ghats forest.",
+    "legend": "Associated with Shiva's defeat of the demon Tripurasura, after which he is said to have rested here.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Kartik Purnima"
+    ],
+    "timings": "Generally open from early morning to night with regular aartis. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Pune. Nearest airport: Pune (~110 km).",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Bhimashankar_Temple"
+    ]
+  },
+  {
+    "slug": "kashi-vishwanath",
+    "name": "Kashi Vishwanath Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Varanasi",
+    "state": "Uttar Pradesh",
+    "lat": 25.311,
+    "lon": 83.011,
+    "significance": "One of the most revered Shiva shrines, on the west bank of the Ganga in the ancient city of Kashi.",
+    "history": "The present temple was built in 1780 by Maharani Ahilyabai Holkar of Indore; its spire was later gold-plated with a donation from Maharaja Ranjit Singh. The Kashi Vishwanath Dham corridor connecting the temple to the Ganga ghats was inaugurated in 2021.",
+    "architecture": "Compact Nagara-style temple crowned by a gold-plated shikhara and dome.",
+    "legend": "Kashi is traditionally held to be the eternal city of Shiva, who is said to grant liberation (moksha) to those who pass away here.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Dev Deepawali",
+      "Sawan (Shravan) month"
+    ],
+    "timings": "Generally open from pre-dawn mangala aarti until late night with several aartis. Confirm exact timings and darshan rules with the temple.",
+    "howToReach": "Nearest railway station: Varanasi Junction. Nearest airport: Lal Bahadur Shastri International Airport, Varanasi.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Kashi_Vishwanath_Temple"
+    ]
+  },
+  {
+    "slug": "trimbakeshwar",
+    "name": "Trimbakeshwar Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Trimbak, Nashik district",
+    "state": "Maharashtra",
+    "lat": 19.932,
+    "lon": 73.53,
+    "significance": "A Jyotirlinga at the source of the Godavari river, at the foot of the Brahmagiri hill.",
+    "history": "The present temple was built in the 18th century by Peshwa Balaji Baji Rao (Nana Saheb) in black basalt.",
+    "architecture": "Ornate Nagara-style temple in black stone with finely carved mandapas.",
+    "legend": "The lingam here is distinctive for its three faces representing Brahma, Vishnu and Shiva.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Kumbh Mela (Simhastha)",
+      "Tripuri Purnima"
+    ],
+    "timings": "Generally open from early morning to night with regular aartis. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Nashik Road. Nearest airport: Nashik / Mumbai.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Trimbakeshwar_Shiva_Temple"
+    ]
+  },
+  {
+    "slug": "baidyanath",
+    "name": "Baidyanath Temple (Vaidyanath Dham)",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Deoghar",
+    "state": "Jharkhand",
+    "lat": 24.492,
+    "lon": 86.7,
+    "significance": "A major Jyotirlinga, widely identified with Deoghar; the site is also revered as a Shakti Peetha.",
+    "history": "Deoghar ('abode of the gods') has long been a pilgrimage centre; the temple complex includes numerous smaller shrines around the main sanctum.",
+    "architecture": "A cluster of stone temples with the main shrine topped by a tall shikhara.",
+    "legend": "Linked to the legend of Ravana offering his heads to Shiva; the lingam is also called Kamna Linga, said to fulfil devotees' wishes.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Shravani Mela (Kanwar Yatra)"
+    ],
+    "timings": "Generally open from pre-dawn to night; the Shravani Mela period sees very heavy footfall. Confirm timings before visiting.",
+    "howToReach": "Nearest railway station: Jasidih (~7 km). Nearest airport: Deoghar / Patna / Ranchi.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Baidyanath_Temple"
+    ]
+  },
+  {
+    "slug": "nageshwar",
+    "name": "Nageshwar Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Near Dwarka",
+    "state": "Gujarat",
+    "lat": 22.336,
+    "lon": 69.086,
+    "significance": "A Jyotirlinga near Dwarka, traditionally identified with the ancient forest of Daarukavanam.",
+    "history": "A long-revered Shiva site near the Saurashtra coast; the complex is marked by a very large seated statue of Shiva visible from afar.",
+    "architecture": "A modern temple structure over the ancient lingam, with a tall Shiva murti in the precinct.",
+    "legend": "Associated with the legend of Shiva protecting the devotee Supriya from the demon Daaruka.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Kartik Purnima"
+    ],
+    "timings": "Generally open from early morning to night with regular aartis. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Dwarka. Nearest airport: Jamnagar.",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Nageshvara_Jyotirlinga"
+    ]
+  },
+  {
+    "slug": "ramanathaswamy",
+    "name": "Ramanathaswamy Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Rameswaram",
+    "state": "Tamil Nadu",
+    "lat": 9.288,
+    "lon": 79.317,
+    "significance": "A Jyotirlinga on Rameswaram island, famed for having one of the longest temple corridors in India.",
+    "history": "Developed over centuries with major contributions from the Pandya, Nayak and later rulers; closely tied to the Ramayana tradition.",
+    "architecture": "Grand Dravidian temple with towering gopurams and immense pillared corridors.",
+    "legend": "Tradition holds that Rama worshipped Shiva here to atone after the war in Lanka; the temple has 22 sacred theerthams (water bodies).",
+    "festivals": [
+      "Maha Shivaratri",
+      "Thai Amavasai",
+      "Aadi Amavasai"
+    ],
+    "timings": "Generally open from early morning to night with ritual baths at the theerthams. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Rameswaram. Nearest airport: Madurai (~170 km).",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Ramanathaswamy_Temple"
+    ]
+  },
+  {
+    "slug": "grishneshwar",
+    "name": "Grishneshwar Temple",
+    "deity": "Shiva (Jyotirlinga)",
+    "category": "Jyotirlinga",
+    "town": "Verul, near Ellora, Aurangabad (Chhatrapati Sambhajinagar)",
+    "state": "Maharashtra",
+    "lat": 20.024,
+    "lon": 75.179,
+    "significance": "Traditionally regarded as the last (twelfth) of the Jyotirlingas, close to the Ellora caves.",
+    "history": "The present temple was rebuilt in the 18th century by Maharani Ahilyabai Holkar in red volcanic rock.",
+    "architecture": "South-Indian-influenced stone temple with finely carved pillars and a layered shikhara.",
+    "legend": "Named after the devotee Kusuma (Ghushma), whose unwavering devotion is said to have brought Shiva to manifest here.",
+    "festivals": [
+      "Maha Shivaratri",
+      "Kartik Purnima"
+    ],
+    "timings": "Generally open from early morning to night with regular aartis. Confirm exact timings with the temple before visiting.",
+    "howToReach": "Nearest railway station: Aurangabad (Chhatrapati Sambhajinagar). Nearest airport: Aurangabad (~30 km).",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Grishneshwar_Temple"
+    ]
+  },
+  {
+    "slug": "dhabaleswar",
+    "name": "Dhabaleswar",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.19833,
+    "lon": 85.84472,
+    "significance": "Dhabaleswar is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q5268662"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "manikeshwari-temple",
+    "name": "Manikeshwari Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 19.906,
+    "lon": 83.16938,
+    "significance": "Manikeshwari Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q6749618"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "sarala-temple",
+    "name": "Sarala Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.70119,
+    "lon": 86.41758,
+    "significance": "Sarala Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q7423024"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "sekhareswar-temple",
+    "name": "Sekhareswar Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.27143,
+    "lon": 86.43578,
+    "significance": "Sekhareswar Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q7447164"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "samaleswari-temple",
+    "name": "Samaleswari Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20,
+    "lon": 84,
+    "significance": "Samaleswari Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q13229738"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "kalijai",
+    "name": "Kalijai",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 19.66509,
+    "lon": 85.21602,
+    "significance": "Kalijai is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15008059"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "narayani-temple",
+    "name": "Narayani Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.24306,
+    "lon": 85.835,
+    "significance": "Narayani Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15261008"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "ashtashambhu-temple",
+    "name": "Ashtashambhu Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.94789,
+    "lon": 85.29927,
+    "significance": "Ashtashambhu Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15723667"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "gorakhnath-temple",
+    "name": "Gorakhnath Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.27,
+    "lon": 86.17,
+    "significance": "Gorakhnath Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724028"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "champanath",
+    "name": "Champanath",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.46344,
+    "lon": 85.1005,
+    "significance": "Champanath is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724079"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "jagannath-temple-banarpal",
+    "name": "Jagannath Temple, Banarpal",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.84197,
+    "lon": 85.18961,
+    "significance": "Jagannath Temple, Banarpal is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724128"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "trilochaneswar-temple",
+    "name": "Trilochaneswar Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.8291,
+    "lon": 86.33975,
+    "significance": "Trilochaneswar Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724259"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "dhamerei-temple",
+    "name": "Dhamerei Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.79472,
+    "lon": 86.89425,
+    "significance": "Dhamerei Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724348"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "neelkantheswar-temple",
+    "name": "Neelkantheswar Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 18.86256,
+    "lon": 82.57836,
+    "significance": "Neelkantheswar Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724433"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "paradeswar-temple",
+    "name": "Paradeswar Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 19.85583,
+    "lon": 82.78689,
+    "significance": "Paradeswar Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724566"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "balaram-temple-dhenkanal",
+    "name": "Balaram Temple, Dhenkanal",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.64857,
+    "lon": 85.59215,
+    "significance": "Balaram Temple, Dhenkanal is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724756"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "bali-bhuasuni-peeth",
+    "name": "Bali Bhuasuni Peeth",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.48021,
+    "lon": 85.78433,
+    "significance": "Bali Bhuasuni Peeth is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724793"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "binikei-temple",
+    "name": "Binikei Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.6181,
+    "lon": 84.39467,
+    "significance": "Binikei Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724834"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "budhi-thakurani-temple",
+    "name": "Budhi Thakurani Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.83464,
+    "lon": 85.07321,
+    "significance": "Budhi Thakurani Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724866"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "mahuri-kalua",
+    "name": "Mahuri Kalua",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 19.3438,
+    "lon": 84.67658,
+    "significance": "Mahuri Kalua is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15724992"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "megheswara-temple",
+    "name": "Megheswara Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.24332,
+    "lon": 85.85374,
+    "significance": "Megheswara Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725046"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "ram-temple-junia",
+    "name": "Ram Temple, Junia",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 21.31227,
+    "lon": 86.8171,
+    "significance": "Ram Temple, Junia is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725128"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "langleswar-temple",
+    "name": "Langleswar Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 21.62073,
+    "lon": 87.1963,
+    "significance": "Langleswar Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725167"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "maa-lobhi-thakurani-temple",
+    "name": "Maa Lobhi Thakurani Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.80258,
+    "lon": 85.19727,
+    "significance": "Maa Lobhi Thakurani Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725184"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "shri-ram-temple-dumuriput",
+    "name": "Shri Ram Temple, Dumuriput",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 18.76911,
+    "lon": 82.79482,
+    "significance": "Shri Ram Temple, Dumuriput is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725243"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "siddheshwar-temple-cuttack",
+    "name": "Siddheshwar Temple, Cuttack",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 20.48021,
+    "lon": 85.78433,
+    "significance": "Siddheshwar Temple, Cuttack is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725340"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  },
+  {
+    "slug": "siruli-mahavir-temple",
+    "name": "Siruli Mahavir Temple",
+    "deity": "Hindu deity",
+    "category": "Hindu Temple",
+    "town": "Odisha",
+    "state": "Odisha",
+    "lat": 19.88704,
+    "lon": 85.68302,
+    "significance": "Siruli Mahavir Temple is a Hindu temple in Odisha, Odisha.",
+    "history": "",
+    "architecture": "",
+    "festivals": [],
+    "timings": "",
+    "howToReach": "",
+    "sources": [
+      "http://www.wikidata.org/entity/Q15725349"
+    ],
+    "enriched": false,
+    "source": "wikidata"
+  }
+]
