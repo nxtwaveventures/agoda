@@ -1,4 +1,5 @@
 {
+  "outputDirectory": ".",
   "crons": [
     { "path": "/api/cron-price-drop", "schedule": "0 6 * * *" }
   ]
