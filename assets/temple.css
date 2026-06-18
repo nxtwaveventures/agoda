@@ -374,3 +374,29 @@ body::after {
 .leg-body strong { font-family: var(--disp); font-weight: 600; font-size: 1.12rem; color: var(--ink); }
 .leg-sub { display: block; color: var(--ink-soft); font-size: .85rem; }
 .leg-read { display: inline-block; margin-top: .25rem; color: var(--magenta); font-weight: 700; font-size: .85rem; text-decoration: none; }
+
+/* ===== real hotel cards (Agoda) + price-drop alert ===== */
+.hotels { margin: 0 0 2.2rem; }
+.hotel-cards { display: grid; gap: .9rem; }
+.hotel {
+  display: flex; gap: 1rem; background: var(--paper-2); border: 1px solid var(--line);
+  border-radius: 16px; overflow: hidden; box-shadow: 0 10px 30px -20px rgba(0,0,0,.5);
+}
+.hotel-photo { flex: none; width: 132px; background: var(--line); }
+.hotel-photo img { width: 132px; height: 100%; min-height: 128px; object-fit: cover; display: block; }
+.hotel-info { padding: .85rem 1rem; flex: 1; min-width: 0; display: flex; flex-direction: column; }
+.hotel-info h3 { font-family: var(--disp); font-weight: 600; font-size: 1.08rem; margin: 0 0 .2rem; color: var(--ink); }
+.hotel-meta { color: var(--ink-soft); font-size: .88rem; margin: 0 0 .7rem; }
+.hotel-actions { margin-top: auto; display: flex; gap: .5rem; flex-wrap: wrap; align-items: center; }
+.book-btn {
+  background: linear-gradient(120deg, var(--saffron), var(--magenta)); color: #fff; font-weight: 700;
+  text-decoration: none; padding: .5rem .95rem; border-radius: 999px; font-size: .9rem;
+  box-shadow: 0 8px 20px -8px rgba(255,45,156,.6);
+}
+.alert-btn {
+  background: rgba(255,138,30,.12); color: var(--ink); border: 1px solid rgba(255,138,30,.45);
+  border-radius: 999px; padding: .5rem .9rem; font-weight: 700; font-size: .84rem; cursor: pointer; font-family: var(--body);
+}
+.alert-btn:hover { background: rgba(255,138,30,.22); }
+.alert-btn:disabled { opacity: .8; cursor: default; }
+@media (max-width: 480px) { .hotel { flex-direction: column; } .hotel-photo, .hotel-photo img { width: 100%; } }

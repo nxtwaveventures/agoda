@@ -16,6 +16,29 @@ const OUT = ".";
 
 const temples = JSON.parse(readFileSync("data/temples.json", "utf8"));
 
+// --- Agoda India hotels (real, bookable cards) ---
+let HOTELS = [];
+try { HOTELS = JSON.parse(readFileSync("data/agoda-india.json", "utf8")); } catch { /* optional at build */ }
+const _R = 6371, _rad = (d) => (d * Math.PI) / 180;
+function hkm(a, b) {
+  const dLat = _rad(b.lat - a.lat), dLon = _rad(b.lon - a.lon);
+  const s = Math.sin(dLat / 2) ** 2 + Math.cos(_rad(a.lat)) * Math.cos(_rad(b.lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * _R * Math.asin(Math.sqrt(s));
+}
+const _CELL = 0.5, _grid = new Map();
+for (const h of HOTELS) { const k = Math.floor(h.lat / _CELL) + "," + Math.floor(h.lon / _CELL); let a = _grid.get(k); if (!a) { a = []; _grid.set(k, a); } a.push(h); }
+function nearestHotels(t, n = 3) {
+  if (!HOTELS.length) return [];
+  const ci = Math.floor(t.lat / _CELL), cj = Math.floor(t.lon / _CELL);
+  let cand = [];
+  for (let r = 1; r <= 6; r++) {
+    cand = [];
+    for (let i = ci - r; i <= ci + r; i++) for (let j = cj - r; j <= cj + r; j++) { const a = _grid.get(i + "," + j); if (a) cand.push(...a); }
+    if (cand.length >= n * 4) break;
+  }
+  return cand.map((h) => ({ h, km: hkm(t, h) })).sort((a, b) => a.km - b.km).slice(0, n).map((x) => x.h);
+}
+
 // ---- helpers ---------------------------------------------------------------
 const esc = (s = "") =>
   String(s)
@@ -26,6 +49,31 @@ const esc = (s = "") =>
 
 // Agoda affiliate deep link for "hotels near <place>"
 const agoda = (place) => `https://www.agoda.com/search?cid=${AGODA_CID}&textToSearch=${encodeURIComponent(place)}`;
+
+// Real bookable hotel cards (nearest hotels from the Agoda data file)
+function hotelsSection(t) {
+  const list = nearestHotels(t, 3);
+  if (!list.length) {
+    return `<a class="book-cta" href="${agoda("hotels near " + t.name + ", " + (t.town || t.state))}" target="_blank" rel="sponsored noopener">🏨 Book a stay near ${esc(t.name)}</a>`;
+  }
+  const cards = list.map((h) => {
+    const photo = (h.photo || "").replace(/^http:/, "https:");
+    const book = h.url + (h.url.includes("?") ? "&" : "?") + "cid=" + AGODA_CID;
+    const meta = [h.star ? h.star + "★" : "", h.score ? h.score + "/10" : "", h.reviews ? h.reviews.toLocaleString() + " reviews" : ""].filter(Boolean).join(" · ");
+    return `<article class="hotel">
+      <a class="hotel-photo" href="${book}" target="_blank" rel="sponsored noopener">${photo ? `<img src="${esc(photo)}" loading="lazy" alt="${esc(h.name)}">` : ""}</a>
+      <div class="hotel-info">
+        <h3>${esc(h.name)}</h3>
+        <p class="hotel-meta">${esc(meta || h.city || "")}</p>
+        <div class="hotel-actions">
+          <a class="book-btn" href="${book}" target="_blank" rel="sponsored noopener">Book on Agoda →</a>
+          <button class="alert-btn" data-hid="${esc(h.id)}" data-name="${esc(h.name)}">🔔 Price-drop alert</button>
+        </div>
+      </div>
+    </article>`;
+  }).join("");
+  return `<section class="hotels"><h2>Where to stay near ${esc(t.name)}</h2><div class="hotel-cards">${cards}</div></section>`;
+}
 
 const head = (title, desc, canonical, extraHead = "") => `<!doctype html>
 <html lang="en">
@@ -115,7 +163,7 @@ ${nav("../")}
     <a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=${t.lat},${t.lon}" target="_blank" rel="noopener">View on map →</a>
   </div>
 
-  <a class="book-cta" href="${agoda("hotels near " + t.name + ", " + (t.town || t.state))}" target="_blank" rel="sponsored noopener">🏨 Book a stay near ${esc(t.name)}</a>
+  ${hotelsSection(t)}
 
   ${t.history ? `<section><h2>History</h2><p>${esc(t.history)}</p></section>` : ""}
   ${t.architecture ? `<section><h2>Architecture</h2><p>${esc(t.architecture)}</p></section>` : ""}
@@ -126,13 +174,9 @@ ${nav("../")}
   ${!t.history && !t.architecture ? `<section class="pending"><p><em>Detailed history and visiting information for this temple are being compiled and verified. ${sources ? "See the source below in the meantime." : ""}</em></p></section>` : ""}
   ${sources ? `<section class="sources"><h2>Sources</h2><ul>${sources}</ul></section>` : ""}
 
-  <div class="visit-cta">
-    <h2>Planning to visit ${esc(t.name)}?</h2>
-    <p>Find and book a place to stay close to the temple.</p>
-    <a class="book-cta" href="${agoda("hotels near " + t.name + ", " + (t.town || t.state))}" target="_blank" rel="sponsored noopener">🏨 Book a stay near ${esc(t.name)}</a>
-  </div>
 </main>
 ${footer}
+<script src="../assets/alert.js"></script>
 </body></html>`;
 }
 

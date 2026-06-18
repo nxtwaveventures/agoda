@@ -10,3 +10,4 @@ node_modules/
 
 # local agent settings
 .claude/
+data/agoda-india.json
