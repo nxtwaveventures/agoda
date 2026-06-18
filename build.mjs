@@ -48,7 +48,7 @@ ${extraHead}
 
 const nav = (root = "") => `<header class="topbar">
   <a class="brand" href="${root}index.html"><span class="om">ॐ</span> ${BRAND}</a>
-  <nav><a href="${root}index.html">All Temples</a> <a class="navcta" href="${root}yatra.html">Plan a Yatra</a></nav>
+  <nav><a href="${root}index.html">All Temples</a> <a href="${root}yatra.html">Near Me</a> <a class="navcta" href="${root}journey.html">Plan a Journey</a></nav>
 </header>`;
 
 const footer = `<footer class="sitefoot">
