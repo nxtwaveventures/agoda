@@ -9,7 +9,7 @@
 import { readFileSync, writeFileSync, mkdirSync, rmSync } from "node:fs";
 
 const SITE = process.env.SITE_URL || "https://etoffe.co.in";
-const BRAND = "Temple Yatra"; // brand/wordmark — single source of truth
+const BRAND = "Etoffe"; // brand/wordmark — single source of truth
 const TAGLINE = "every temple, one place";
 const AGODA_CID = process.env.AGODA_CID || "YOUR_AGODA_CID"; // your Agoda Partner CID
 const OUT = ".";

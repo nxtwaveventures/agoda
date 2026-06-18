@@ -134,7 +134,11 @@ async function main() {
   const keys = arg === "all" ? Object.keys(STATES) : [arg];
   let incoming = [];
   for (const k of keys) {
-    incoming.push(...(await importState(k, limit)));
+    try {
+      incoming.push(...(await importState(k, limit)));
+    } catch (e) {
+      console.log(`  ! ${k} failed (${e.message}) — skipped`);
+    }
     if (keys.length > 1) await new Promise((r) => setTimeout(r, 1200)); // be polite
   }
 
