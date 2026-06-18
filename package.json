@@ -5,6 +5,7 @@
   "private": true,
   "description": "Etoffe — a sourced encyclopedia of India's temples + Agoda-monetized yatra planner.",
   "scripts": {
+    "build": "echo 'Etoffe is a prebuilt static site — nothing to build'",
     "generate": "node build.mjs",
     "dev": "node build.mjs && python3 -m http.server 8000",
     "serve": "python3 -m http.server 8000",
