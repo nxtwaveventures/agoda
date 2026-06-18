@@ -24,6 +24,9 @@ const esc = (s = "") =>
     .replaceAll(">", "&gt;")
     .replaceAll('"', "&quot;");
 
+// Agoda affiliate deep link for "hotels near <place>"
+const agoda = (place) => `https://www.agoda.com/search?cid=${AGODA_CID}&textToSearch=${encodeURIComponent(place)}`;
+
 const head = (title, desc, canonical, extraHead = "") => `<!doctype html>
 <html lang="en">
 <head>
@@ -112,6 +115,8 @@ ${nav("../")}
     <a class="mapbtn" href="https://www.google.com/maps/search/?api=1&query=${t.lat},${t.lon}" target="_blank" rel="noopener">View on map →</a>
   </div>
 
+  <a class="book-cta" href="${agoda("hotels near " + t.name + ", " + (t.town || t.state))}" target="_blank" rel="sponsored noopener">🏨 Book a stay near ${esc(t.name)}</a>
+
   ${t.history ? `<section><h2>History</h2><p>${esc(t.history)}</p></section>` : ""}
   ${t.architecture ? `<section><h2>Architecture</h2><p>${esc(t.architecture)}</p></section>` : ""}
   ${t.legend ? `<section><h2>Legend &amp; tradition</h2><p>${esc(t.legend)}</p></section>` : ""}
@@ -120,6 +125,12 @@ ${nav("../")}
   ${t.howToReach ? `<section><h2>How to reach</h2><p>${esc(t.howToReach)}</p></section>` : ""}
   ${!t.history && !t.architecture ? `<section class="pending"><p><em>Detailed history and visiting information for this temple are being compiled and verified. ${sources ? "See the source below in the meantime." : ""}</em></p></section>` : ""}
   ${sources ? `<section class="sources"><h2>Sources</h2><ul>${sources}</ul></section>` : ""}
+
+  <div class="visit-cta">
+    <h2>Planning to visit ${esc(t.name)}?</h2>
+    <p>Find and book a place to stay close to the temple.</p>
+    <a class="book-cta" href="${agoda("hotels near " + t.name + ", " + (t.town || t.state))}" target="_blank" rel="sponsored noopener">🏨 Book a stay near ${esc(t.name)}</a>
+  </div>
 </main>
 ${footer}
 </body></html>`;
@@ -207,7 +218,7 @@ ${footer}
         return '<article class="near-card">'
           + '<div class="near-top"><span class="km">' + Math.round(n.km) + ' km</span><span class="dir">' + n.dir + '</span></div>'
           + '<h3>' + t.name + '</h3><p>' + (t.town || t.state) + '</p>'
-          + '<div class="near-cta"><a class="cta-hotel" href="' + agoda("hotels near " + place) + '" target="_blank" rel="sponsored noopener">🏨 Stay near here</a>'
+          + '<div class="near-cta"><a class="cta-hotel" href="' + agoda("hotels near " + place) + '" target="_blank" rel="sponsored noopener">🏨 Book a stay</a>'
           + '<a class="cta-temple" href="temples/' + t.slug + '.html">Read →</a></div>'
           + '</article>';
       }).join("");
