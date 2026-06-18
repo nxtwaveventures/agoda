@@ -403,3 +403,16 @@ body::after {
 
 /* logo: Om only */
 .brand .om { font-size: 1.7rem; line-height: 1; }
+
+/* ===== homepage: 3 nearest temples + a stay each ===== */
+.near-grid.ny { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
+.ny-card { display: flex; flex-direction: column; background: var(--paper); border-radius: var(--radius); overflow: hidden; box-shadow: 0 14px 40px -22px rgba(0,0,0,.7); }
+.ny-temple { padding: 1.1rem 1.2rem .9rem; }
+.ny-km { color: var(--saffron); font-weight: 700; font-size: .78rem; text-transform: uppercase; letter-spacing: .06em; }
+.ny-temple h3 { font-family: var(--disp); font-weight: 600; font-size: 1.2rem; color: var(--ink); margin: .25rem 0 0; }
+.ny-temple p { color: var(--ink-soft); margin: .1rem 0 .6rem; }
+.ny-hotel { display: flex; gap: .7rem; align-items: center; margin-top: auto; padding: .75rem .9rem; background: var(--paper-2); border-top: 1px solid var(--line); text-decoration: none; color: var(--ink); }
+.ny-hotel img { width: 60px; height: 60px; object-fit: cover; border-radius: 10px; flex: none; }
+.ny-hotel-info strong { display: block; font-size: .9rem; line-height: 1.25; }
+.ny-hotel-info span { color: var(--magenta); font-size: .8rem; font-weight: 600; }
+.ny-hotel.none { justify-content: center; font-weight: 700; color: var(--magenta); }

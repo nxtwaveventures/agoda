@@ -222,9 +222,9 @@ ${nav("")}
   </section>
 
   <section class="nearyou" id="nearYou" hidden>
-    <h2 class="sec-title">Temples near you</h2>
+    <h2 class="sec-title">Your 3 nearest temples — and where to stay</h2>
     <p class="nearyou-sub" id="nearYouSub"></p>
-    <div class="near-grid" id="nearYouGrid"></div>
+    <div class="near-grid ny" id="nearYouGrid"></div>
   </section>
 
   <section class="grid" id="grid">
@@ -267,15 +267,20 @@ ${footer}
       return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place);
     }
     function show(me, label) {
-      var near = Geo.nearest(me, T, 6);
+      var near = Geo.nearest(me, T, 3);
       document.getElementById("nearYouGrid").innerHTML = near.map(function (n) {
-        var t = n.temple, place = t.name + ", " + (t.town || t.state);
-        return '<article class="near-card">'
-          + '<div class="near-top"><span class="km">' + Math.round(n.km) + ' km</span><span class="dir">' + n.dir + '</span></div>'
+        var t = n.temple, h = t.hotel;
+        var stay = h
+          ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
+            + (h.photo ? '<img src="' + h.photo + '" loading="lazy" alt="">' : '')
+            + '<div class="ny-hotel-info"><strong>Stay: ' + h.name + '</strong><span>'
+            + (h.star ? h.star + '★ ' : '') + (h.score ? h.score + '/10 · ' : '') + 'Book on Agoda →</span></div></a>'
+          : '<a class="ny-hotel none" href="' + agoda("hotels near " + t.name + ", " + (t.town || t.state)) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay near here →</a>';
+        return '<article class="ny-card">'
+          + '<div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
           + '<h3>' + t.name + '</h3><p>' + (t.town || t.state) + '</p>'
-          + '<div class="near-cta"><a class="cta-hotel" href="' + agoda("hotels near " + place) + '" target="_blank" rel="sponsored noopener">🏨 Book a stay</a>'
-          + '<a class="cta-temple" href="temples/' + t.slug + '.html">Read →</a></div>'
-          + '</article>';
+          + '<a class="cta-temple" href="temples/' + t.slug + '.html">Read about the temple →</a></div>'
+          + stay + '</article>';
       }).join("");
       document.getElementById("nearYouSub").textContent = label;
       document.getElementById("nearYou").hidden = false;
@@ -309,7 +314,16 @@ writeFileSync(`${OUT}/index.html`, indexPage());
 writeFileSync(`${OUT}/sitemap.xml`, sitemap());
 
 // browser data feed for the Yatra planner (minimal fields)
-const pub = temples.map((t) => ({ slug: t.slug, name: t.name, town: t.town, state: t.state, lat: t.lat, lon: t.lon, category: t.category }));
+const pub = temples.map((t) => {
+  const h = nearestHotels(t, 1)[0];
+  const hotel = h ? {
+    name: h.name,
+    photo: (h.photo || "").replace(/^http:/, "https:"),
+    star: h.star, score: h.score,
+    url: h.url + (h.url.includes("?") ? "&" : "?") + "cid=" + AGODA_CID,
+  } : null;
+  return { slug: t.slug, name: t.name, town: t.town, state: t.state, lat: t.lat, lon: t.lon, category: t.category, hotel };
+});
 writeFileSync(`${OUT}/temples-data.json`, JSON.stringify(pub));
 // also as JS so the planner works when opened via file:// (fetch is blocked there)
 writeFileSync(`${OUT}/temples-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__TEMPLES__ = ${JSON.stringify(pub)};`);
