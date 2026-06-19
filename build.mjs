@@ -316,8 +316,19 @@ ${footer}
         grid.innerHTML = list.map(dealCard).join("");
       }).catch(fb);
     }
+    function topAttractions(me) {
+      var picks = [], used = {};
+      [["temple", T], ["spot", P.spot || []], ["beach", P.beach || []]].forEach(function (pair) {
+        if (pair[1].length) { var n = Geo.nearest(me, pair[1], 1)[0]; if (n) { picks.push(n); used[n.temple.name] = 1; } }
+      });
+      while (picks.length < 3) { // top up with nearest remaining (parks/spots) if a category was empty
+        var n2 = Geo.nearest(me, ALL.concat(P.park || []), picks.length + 2).filter(function (x) { return !used[x.temple.name]; })[0];
+        if (!n2) break; picks.push(n2); used[n2.temple.name] = 1;
+      }
+      return picks;
+    }
     function show(me, label) {
-      document.getElementById("destGrid").innerHTML = Geo.nearest(me, ALL, 3).map(destCard).join("");
+      document.getElementById("destGrid").innerHTML = topAttractions(me).map(destCard).join("");
       renderDeals(me);
       document.getElementById("nearYouSub").textContent = label;
       document.getElementById("nearYou").hidden = false;
@@ -373,7 +384,7 @@ const placePub = PLACES.map((p) => {
   } : null;
   return { kind: p.kind, name: p.name, town: p.town, lat: p.lat, lon: p.lon, hotel };
 });
-const placesByKind = { spot: placePub.filter((p) => p.kind === "spot"), park: placePub.filter((p) => p.kind === "park") };
+const placesByKind = { spot: placePub.filter((p) => p.kind === "spot"), park: placePub.filter((p) => p.kind === "park"), beach: placePub.filter((p) => p.kind === "beach") };
 writeFileSync(`${OUT}/temples-data.json`, JSON.stringify(pub));
 // also as JS so the planner works when opened via file:// (fetch is blocked there)
 writeFileSync(`${OUT}/temples-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__TEMPLES__ = ${JSON.stringify(pub)};\nwindow.__PLACES__ = ${JSON.stringify(placesByKind)};`);

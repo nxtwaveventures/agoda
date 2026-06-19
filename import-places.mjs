@@ -50,13 +50,17 @@ async function main() {
   const parks = rows(await sparql(Q("?item wdt:P31 wd:Q46169 .")), "park");
   console.log("  • National parks:", parks.length);
   await new Promise((r) => setTimeout(r, 1200));
-  // Famous spots: tourist attraction, World Heritage Site, fort, beach, waterfall, hill station
-  const spotsVals = "VALUES ?type { wd:Q570116 wd:Q9259 wd:Q57831 wd:Q40080 wd:Q34038 wd:Q1066984 } ?item wdt:P31 ?type .";
+  // Beaches (own category)
+  const beaches = rows(await sparql(Q("?item wdt:P31 wd:Q40080 .")), "beach");
+  console.log("  • Beaches:", beaches.length);
+  await new Promise((r) => setTimeout(r, 1200));
+  // Famous spots: tourist attraction, World Heritage Site, fort, waterfall, hill station
+  const spotsVals = "VALUES ?type { wd:Q570116 wd:Q9259 wd:Q57831 wd:Q34038 wd:Q1066984 } ?item wdt:P31 ?type .";
   const spots = rows(await sparql(Q(spotsVals) + " LIMIT 2500"), "spot");
   console.log("  • Famous spots:", spots.length);
 
   // dedupe by name+rounded coord
-  const all = [...parks, ...spots];
+  const all = [...parks, ...beaches, ...spots];
   const seen = new Set(), uniq = [];
   for (const r of all) { const k = r.name.toLowerCase() + "|" + r.lat.toFixed(2) + "|" + r.lon.toFixed(2); if (!seen.has(k)) { seen.add(k); uniq.push(r); } }
 
