@@ -96,7 +96,7 @@ ${extraHead}
 
 const nav = (root = "") => `<header class="topbar">
   <a class="brand" href="${root}index.html" aria-label="${BRAND}"><span class="om">ॐ</span></a>
-  <nav><a href="${root}stays.html">Stays</a> <a href="${root}journey.html">Journeys</a> <a class="navcta" href="${root}yatra.html">Near Me</a></nav>
+  <nav><a class="navcta" href="${root}stays.html">Stays</a></nav>
 </header>`;
 
 const footer = `<footer class="sitefoot">
