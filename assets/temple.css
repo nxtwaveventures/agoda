@@ -252,3 +252,11 @@ body {
 
 @media (max-width: 560px) { .quickfacts dl { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { *, *::before { animation: none !important; transition: none !important; } }
+
+/* ===== deal cards (live discounts) ===== */
+.hotel-cards.deals { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+.hotel .hotel-photo { position: relative; }
+.off { position: absolute; top: .45rem; left: .45rem; background: var(--red); color: #fff; font-weight: 700; font-size: .78rem; padding: .18rem .5rem; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,.25); }
+.price { font-weight: 600; color: var(--ink); margin-right: auto; }
+.price s { color: var(--ink-soft); font-weight: 400; margin-right: .25rem; }
+.price b { color: var(--red-deep); }

@@ -223,9 +223,10 @@ ${nav("")}
 
   <section class="nearyou" id="nearYou" hidden>
     <p class="nearyou-sub" id="nearYouSub"></p>
-    <div class="ny-cat" id="catTemples" hidden><h2 class="sec-title">⛩️ Temples near you</h2><div class="near-grid ny" id="nyTemples"></div></div>
-    <div class="ny-cat" id="catSpots" hidden><h2 class="sec-title">📸 Famous spots near you</h2><div class="near-grid ny" id="nySpots"></div></div>
-    <div class="ny-cat" id="catParks" hidden><h2 class="sec-title">🌿 National parks near you</h2><div class="near-grid ny" id="nyParks"></div></div>
+    <h2 class="sec-title">Top destinations near you</h2>
+    <div class="near-grid ny" id="destGrid"></div>
+    <h2 class="sec-title">🔥 Top hotel deals near you</h2>
+    <div class="hotel-cards deals" id="dealGrid"></div>
   </section>
 
   <section class="grid" id="grid">
@@ -235,6 +236,7 @@ ${nav("")}
 </main>
 ${footer}
 <script src="temples-data.js"></script>
+<script src="cities-data.js"></script>
 <script src="assets/geo.js"></script>
 <script>
   const q = document.getElementById('q');
@@ -264,9 +266,13 @@ ${footer}
     var CID = window.__AGODA_CID__ || "1967296";
     var T = window.__TEMPLES__ || [];
     var P = window.__PLACES__ || {};
+    var CITIES = window.__CITIES__ || [];
     if (!window.Geo) return;
-    function agoda(place) { return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place); }
-    function card(n) {
+    var ALL = T.concat(P.spot || [], P.park || []);
+    var agoda = function (place) { return "https://www.agoda.com/search?cid=" + encodeURIComponent(CID) + "&textToSearch=" + encodeURIComponent(place); };
+    var money = function (c, v) { return v != null ? (c || "") + " " + Number(v).toLocaleString() : ""; };
+
+    function destCard(n) {
       var t = n.temple, h = t.hotel;
       var stay = h
         ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
@@ -280,24 +286,46 @@ ${footer}
       return '<article class="ny-card"><div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
         + '<h3>' + t.name + '</h3><p>' + (t.town || "") + '</p>' + read + '</div>' + stay + '</article>';
     }
-    function renderNear(arr, gridId, catId, me) {
-      var cat = document.getElementById(catId);
-      if (!arr || !arr.length) { if (cat) cat.hidden = true; return; }
-      var near = Geo.nearest(me, arr, 3);
-      document.getElementById(gridId).innerHTML = near.map(card).join("");
-      if (cat) cat.hidden = false;
+    function dealCard(h) {
+      var img = (h.image || "").replace(/^http:/, "https:");
+      var off = h.discount ? '<span class="off">-' + Math.round(h.discount) + '%</span>' : '';
+      var price = h.price != null ? '<span class="price">' + (h.was && h.was > h.price ? '<s>' + money(h.currency, h.was) + '</s> ' : '') + '<b>' + money(h.currency, h.price) + '</b></span>' : '';
+      return '<article class="hotel deal"><a class="hotel-photo" href="' + h.bookUrl + '" target="_blank" rel="sponsored noopener">'
+        + (img ? '<img src="' + img + '" loading="lazy" alt="">' : '') + off + '</a>'
+        + '<div class="hotel-info"><h3>' + h.name + '</h3>'
+        + '<p class="hotel-meta">' + (h.rating ? h.rating + '★ ' : '') + (h.reviewScore ? h.reviewScore + '/10' : '') + '</p>'
+        + '<div class="hotel-actions">' + price + '<a class="book-btn" href="' + h.bookUrl + '" target="_blank" rel="sponsored noopener">Book →</a></div></div></article>';
+    }
+    function embeddedDeals(me) {
+      return Geo.nearest(me, ALL, 14).map(function (n) { return n.temple.hotel; }).filter(Boolean).slice(0, 3)
+        .map(function (h) { return dealCard({ name: h.name, image: h.photo, bookUrl: h.url, rating: h.star, reviewScore: h.score }); }).join("");
+    }
+    function nearestCityId(me) {
+      var best = null, bd = 1e9;
+      for (var i = 0; i < CITIES.length; i++) { var d = Geo.haversine(me, CITIES[i]); if (d < bd) { bd = d; best = CITIES[i]; } }
+      return best ? best.id : null;
+    }
+    function renderDeals(me) {
+      var grid = document.getElementById("dealGrid");
+      var cid = nearestCityId(me);
+      var fb = function () { grid.innerHTML = embeddedDeals(me) || '<p class="nearyou-sub">Live deals appear here once the API is live.</p>'; };
+      if (!cid) { fb(); return; }
+      fetch("/api/deals?cityId=" + encodeURIComponent(cid)).then(function (r) { return r.json(); }).then(function (d) {
+        var list = (d.deals || []).slice(0, 3);
+        if (!list.length) { fb(); return; }
+        grid.innerHTML = list.map(dealCard).join("");
+      }).catch(fb);
     }
     function show(me, label) {
-      renderNear(T, "nyTemples", "catTemples", me);
-      renderNear(P.spot, "nySpots", "catSpots", me);
-      renderNear(P.park, "nyParks", "catParks", me);
+      document.getElementById("destGrid").innerHTML = Geo.nearest(me, ALL, 3).map(destCard).join("");
+      renderDeals(me);
       document.getElementById("nearYouSub").textContent = label;
       document.getElementById("nearYou").hidden = false;
       document.getElementById("nearYou").scrollIntoView({ behavior: "smooth", block: "nearest" });
     }
     fetch("https://get.geojs.io/v1/ip/geo.json").then(function (r) { return r.json(); }).then(function (g) {
       var lat = parseFloat(g.latitude), lon = parseFloat(g.longitude);
-      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, "Top picks near you" + (g.city ? " — " + g.city : "") + ".");
+      if (isFinite(lat) && isFinite(lon)) show({ lat: lat, lon: lon }, g.city ? "Near " + g.city : "Near you");
     }).catch(function () {});
   })();
 </script>
@@ -349,6 +377,7 @@ const placesByKind = { spot: placePub.filter((p) => p.kind === "spot"), park: pl
 writeFileSync(`${OUT}/temples-data.json`, JSON.stringify(pub));
 // also as JS so the planner works when opened via file:// (fetch is blocked there)
 writeFileSync(`${OUT}/temples-data.js`, `window.__AGODA_CID__=${JSON.stringify(AGODA_CID)};\nwindow.__TEMPLES__ = ${JSON.stringify(pub)};\nwindow.__PLACES__ = ${JSON.stringify(placesByKind)};`);
+try { const _c = JSON.parse(readFileSync("data/cities.json", "utf8")); writeFileSync(`${OUT}/cities-data.js`, `window.__CITIES__=${JSON.stringify(_c)};`); } catch { /* optional */ }
 
 // general "Stays" index: top Indian cities, top hotels each (compact, shippable)
 if (HOTELS.length) {
