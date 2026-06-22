@@ -89,7 +89,7 @@ const head = (title, desc, canonical, extraHead = "") => `<!doctype html>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%95%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..600&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..800;1,400..600&family=Montserrat:wght@400;500;600;700&family=Caveat:wght@500;700&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="${canonical.includes("/temples/") ? "../assets/temple.css" : "assets/temple.css"}" />
 ${extraHead}
 </head>`;
@@ -212,7 +212,7 @@ ${nav("")}
 
   <section class="nearyou" id="nearYou" hidden>
     <p class="nearyou-sub" id="nearYouSub"></p>
-    <h2 class="sec-title">Top destinations near you</h2>
+    <h2 class="sec-title">Top attractions near you</h2>
     <div class="near-grid ny" id="destGrid"></div>
     <h2 class="sec-title">🔥 Top hotel deals near you</h2>
     <div class="hotel-cards deals" id="dealGrid"></div>
@@ -238,17 +238,20 @@ ${footer}
 
     function destCard(n) {
       var t = n.temple, h = t.hotel;
-      var stay = h
-        ? '<a class="ny-hotel" href="' + h.url + '" target="_blank" rel="sponsored noopener">'
-          + (h.photo ? '<img src="' + h.photo + '" loading="lazy" alt="">' : '')
-          + '<div class="ny-hotel-info"><strong>Stay: ' + h.name + '</strong><span>'
-          + (h.star ? h.star + '★ ' : '') + (h.score ? h.score + '/10 · ' : '') + 'Book on Agoda →</span></div></a>'
-        : '<a class="ny-hotel none" href="' + agoda("hotels near " + t.name + ", " + (t.town || "")) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay near here →</a>';
-      var read = t.slug
-        ? '<a class="cta-temple" href="temples/' + t.slug + '.html">Read about it →</a>'
-        : '<a class="cta-temple" href="https://www.google.com/maps/search/?api=1&query=' + t.lat + ',' + t.lon + '" target="_blank" rel="noopener">View on map →</a>';
-      return '<article class="ny-card"><div class="ny-temple"><span class="ny-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
-        + '<h3>' + t.name + '</h3><p>' + (t.town || "") + '</p>' + read + '</div>' + stay + '</article>';
+      var img = h && h.photo ? h.photo : "";
+      var link = t.slug ? "temples/" + t.slug + ".html" : "https://www.google.com/maps/search/?api=1&query=" + t.lat + "," + t.lon;
+      var tgt = t.slug ? "" : ' target="_blank" rel="noopener"';
+      var kind = t.slug ? "Temple" : (t.kind === "beach" ? "Beach" : (t.kind === "park" ? "National Park" : "Famous spot"));
+      var icon = t.slug ? "ॐ" : (t.kind === "beach" ? "🏖️" : (t.kind === "park" ? "🌿" : "📸"));
+      return '<article class="dest">'
+        + '<a class="dest-media" href="' + link + '"' + tgt + '>'
+        + (img ? '<img src="' + img + '" loading="lazy" alt="">' : '<span class="dest-fallback">' + icon + '</span>')
+        + '<span class="dest-badge">' + icon + ' ' + kind + '</span><span class="dest-scrim"></span>'
+        + '<span class="dest-cap"><span class="dest-km">' + Math.round(n.km) + ' km ' + n.dir + '</span>'
+        + '<strong>' + t.name + '</strong><em>' + (t.town || "") + '</em></span></a>'
+        + (h ? '<a class="dest-stay" href="' + h.url + '" target="_blank" rel="sponsored noopener">🏨 Stay near here' + (h.score ? ' · ' + h.score + '/10' : '') + ' · Book →</a>'
+          : '<a class="dest-stay none" href="' + agoda("hotels near " + t.name + ", " + (t.town || "")) + '" target="_blank" rel="sponsored noopener">🏨 Find a stay →</a>')
+        + '</article>';
     }
     function dealCard(h) {
       var img = (h.image || "").replace(/^http:/, "https:");
